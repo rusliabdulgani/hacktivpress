@@ -5,7 +5,11 @@ var userSchema = new Schema({
   name: String,
   email: String,
   username: String,
-  password: String
+  password: String,
+  article_list: [{
+    type: Schema.ObjectId,
+    ref: 'Article'
+  }]
 });
 
 var User = mongoose.model('User', userSchema);

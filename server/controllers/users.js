@@ -5,6 +5,15 @@ const salt = bcrypt.genSaltSync(10);
 require('dotenv').config()
 
 module.exports = {
+  getAllUsers: (req, res) => {
+    User.find()
+    .then( data => {
+      res.send(data)
+    })
+    .catch( err => {
+      res.send(err)
+    })
+  },
   signUp: (req, res) => {
     let hashPwd =  bcrypt.hashSync(req.body.password, salt);
     User.create({
@@ -29,10 +38,19 @@ module.exports = {
     .then( data => {
       if(bcrypt.compareSync(req.body.password, data.password)){
         var token = jwt.sign({
-          username: data.username,
-          
-        }, process.env.SECRET_KEY)
+          username: data.username
+        }, process.env.SECRET_KEY);
+        req.headers.token = token;
+        res.send({
+          token: token,
+          id: _id
+        })
+      }else {
+        res.send('invalid username atau password')
       }
+    })
+    .catch( err => {
+      res.send(err)
     })
   }
 }

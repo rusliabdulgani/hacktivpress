@@ -5,9 +5,12 @@ var articlesSchema = new Schema({
   name: String,
   content: String,
   category: String,
-  author: String
+  author: {
+    type: String,
+    ref: 'Users'
+  }
 });
 
-var User = mongoose.model('User', userSchema);
+var Article = mongoose.model('Article', articlesSchema);
 
-module.exports = User;
+module.exports = Article;
