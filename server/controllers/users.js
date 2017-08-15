@@ -5,7 +5,7 @@ const salt = bcrypt.genSaltSync(10);
 require('dotenv').config()
 
 module.exports = {
-  signup: (req, res) => {
+  signUp: (req, res) => {
     let hashPwd =  bcrypt.hashSync(req.body.password, salt);
     User.create({
       name: req.body.name,
@@ -18,6 +18,21 @@ module.exports = {
     })
     .catch( err => {
       res.send(err)
+    })
+  },
+  signIn: (req, res) => {
+    User.findOne({
+      where: {
+        username: req.body.username
+      }
+    })
+    .then( data => {
+      if(bcrypt.compareSync(req.body.password, data.password)){
+        var token = jwt.sign({
+          username: data.username,
+          
+        }, process.env.SECRET_KEY)
+      }
     })
   }
 }
