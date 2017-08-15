@@ -2,7 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Hacktivpress - articles</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="public/css/style.css">
   </head>
   <body>
     <div class="container">
@@ -14,5 +26,29 @@
         </div>
       </div>
     </div>
+    <div class="container" id="app">
+      <div class="col-md-8-offset-2">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Article Name</th>
+                <th>Content</th>
+                <th>Category</th>
+                <th>Author</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="dt in listArticles">
+                <td >{{ dt.name }}</td>
+                <td >{{ dt.content }}</td>
+                <td >{{ dt.category }}</td>
+                <td >{{ dt.author }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="public/script/articles.js">
+    </script>
   </body>
 </html>

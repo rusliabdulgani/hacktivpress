@@ -1,5 +1,5 @@
 const app = new Vue({
-  el: '#app-login',
+  el: '#app',
   data:{
     name: '',
     email: '',
@@ -17,6 +17,20 @@ const app = new Vue({
       })
       .then( response =>{
         alert('anda berhasil register.')
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+    },
+    signin:function(){
+      axios.post('http://localhost:3000/users/signin',{
+        username: this.username,
+        password: this.password
+      })
+      .then( res=>{
+        const tokenJwt = res.data;
+        localStorage.setItem('token', tokenJwt)
+        window.location.href = 'articles.html'
       })
       .catch(err=>{
         console.log(err);

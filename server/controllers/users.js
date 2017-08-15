@@ -38,6 +38,7 @@ module.exports = {
     .then( data => {
       if(bcrypt.compareSync(req.body.password, data.password)){
         var token = jwt.sign({
+          _id: data.id
           username: data.username
         }, process.env.SECRET_KEY);
         req.headers.token = token;
