@@ -19,12 +19,37 @@ module.exports = {
       res.send(err)
     })
   },
-  createArticles: (req, res) => {
+  createArticle: (req, res) => {
     Articles.create({
       name: req.body.name,
       content: req.body.content,
       category: req.body.category
     })
-    
+    .then( data => {
+      res.send(data)
+    })
+    .catch( err => {
+      res.send(err)
+    })
+  },
+  updateArticle: (req, res) => {
+    Articles.findOneAndUpdate({
+      _id: req.params.id
+    },{
+      name: req.body.name,
+      content: req.body.content,
+      category: req.body.category
+    })
+  },
+  deleteArticle: (req, res) => {
+    Articles.remove({
+      _id: req.params.id
+    })
+    .then( data => {
+      res.send(data)
+    })
+    .catch( err => {
+      res.send(err)
+    })
   }
 }
