@@ -17,6 +17,8 @@ const app = new Vue({
       })
       .then( response =>{
         alert('anda berhasil register.')
+        this.username = '';
+        this.password = '';
       })
       .catch(err=>{
         console.log(err);
